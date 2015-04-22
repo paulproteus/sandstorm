@@ -57,8 +57,8 @@ make BUILD=$BUILD
 echo "**** Pushing build $BUILD ****"
 
 echo $BUILD > tmp/$CHANNEL
-gcutil push fe $TARBALL /var/www/dl.sandstorm.io
-gcutil push fe tmp/$CHANNEL /var/www/install.sandstorm.io
+echo gcutil push fe $TARBALL /var/www/dl.sandstorm.io
+echo gcutil push fe tmp/$CHANNEL /var/www/install.sandstorm.io
 
-gcutil ssh smalldemo sudo service sandstorm update
-gcutil ssh alpha sudo service sandstorm update dev
+echo gcutil ssh smalldemo sudo service sandstorm update
+echo gcutil ssh alpha sudo service sandstorm update dev
