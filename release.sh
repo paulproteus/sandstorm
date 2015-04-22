@@ -52,7 +52,7 @@ TARBALL=sandstorm-$BUILD.tar.xz
 
 echo "**** Building build $BUILD ****"
 
-echo make BUILD=$BUILD
+make BUILD=$BUILD
 
 echo "**** Pushing build $BUILD ****"
 
