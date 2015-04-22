@@ -62,3 +62,8 @@ echo gcutil push fe tmp/$CHANNEL /var/www/install.sandstorm.io
 
 echo gcutil ssh smalldemo sudo service sandstorm update
 echo gcutil ssh alpha sudo service sandstorm update dev
+
+echo "**** Tagging this commit as $CHANNEL-$BUILD ****"
+GIT_REVISION="$(<bundle/git-revision)"
+git tag "$CHANNEL-$BUILD" "$GIT_REVISION" -m "Released $BUILD on $CHANNEL."
+git push paulproteus --tag "$CHANNEL-BUILD"
