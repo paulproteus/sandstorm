@@ -18,7 +18,7 @@
       {{/if}}
     </div>
 
-    {{>sandstormGrainTable grains=filteredSortedGrains onGrainClicked=onGrainClicked hasAnyGrainsCreatedOrSharedWithMe=hasAnyGrainsCreatedOrSharedWithMe}}
+    {{>sandstormGrainTable grains=filteredSortedGrains onGrainClicked=onGrainClicked zomg=1 _db=_db hasAnyGrainsCreatedOrSharedWithMe=hasAnyGrainsCreatedOrSharedWithMe}}
 
     {{#unless hasAnyGrainsCreatedOrSharedWithMe}}
       {{#if Template.subscriptionsReady}}

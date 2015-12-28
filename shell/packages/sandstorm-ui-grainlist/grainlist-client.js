@@ -91,13 +91,13 @@ Template.sandstormGrainTable.helpers({
   shouldShowGrainTableGuidedTour: function() {
     console.log("should data");
     console.log(Template.instance().data);
+    console.log(Template.instance());
     var _db = Template.instance().data._db;
     if (! _db) {
       return false;
     }
     var hasGrains = !! (_db.currentUserGrains().count() ||
                         _db.currentUserApiTokens().count());
-    alert("has grains? " + hasGrains);
     return ! hasGrains;
   }
 });
