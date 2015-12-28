@@ -18,7 +18,7 @@
       {{/if}}
     </div>
 
-    {{>sandstormGrainTable grains=filteredSortedGrains onGrainClicked=onGrainClicked}}
+    {{>sandstormGrainTable grains=filteredSortedGrains onGrainClicked=onGrainClicked hasAnyGrainsCreatedOrSharedWithMe=hasAnyGrainsCreatedOrSharedWithMe}}
 
     {{#unless hasAnyGrainsCreatedOrSharedWithMe}}
       {{#if Template.subscriptionsReady}}
@@ -55,7 +55,11 @@
 
   Future work: callbacks for requesting different sort orders?
   --}}
-    <table class="grain-list-table">
+  <table class="grain-list-table"
+         data-step="{{#if shouldShowGrainTableGuidedTour}}1{{/if}}"
+         data-intro="{{#if shouldShowGrainTableGuidedTour}}
+         Click to create a new grain and start the app. You can make as many as you want.
+         {{/if}}">
       <thead>
         <tr>
             <td class="td-app-icon"></td>
@@ -71,10 +75,24 @@
       <tbody>
         {{#each actions}}
         <tr class="action">
-          <td class="td-app-icon"><div class="new-grain-icon"></div></td>
+          <td class="td-app-icon"><div class="new-grain-icon">
+          </div></td>
           <td class="action-button" colspan="3"><button class="action">{{buttonText}}</button></td>
         </tr>
         {{/each}}
+    <script type="text/javascript">
+      function startTour() {
+      var tour = introJs()
+      tour.setOption('tooltipPosition', 'auto');
+      tour.setOption('positionPrecedence', ['bottom', 'top', 'left', 'right'])
+      tour.setOption('showStepNumbers', false);
+      tour.setOption('showBullets', false);
+      tour.setOption('exitOnOverlayClick', true);
+      tour.setOption('disableInteraction', true);
+      tour.start()
+      }
+      startTour();
+    </script>
         {{#each grains}}
         <tr class="grain" data-grainid="{{ _id }}">
           <td class="td-app-icon"><div class="app-icon" title="{{appTitle}}" style="background-image: url('{{ iconSrc }}');"></div></td>
