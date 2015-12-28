@@ -104,6 +104,13 @@ Template.sandstormAppListPage.helpers({
     var ref = Template.instance().data;
     return ref._db.currentUserActions().count();
   },
+  showAppGuidedTour: function() {
+    if (Session.get('dismissedAppGuidedTour')) {
+      return false;
+    }
+    var ref = Template.instance().data;
+    return (matchApps(ref._filter.get()).length === 0);
+  },
   apps: function() {
     var ref = Template.instance().data;
     var apps = matchApps(ref._filter.get());
