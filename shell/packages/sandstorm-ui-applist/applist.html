@@ -38,13 +38,14 @@
 
     <a
        data-step="{{#if showAppGuidedTour}}1{{/if}}"
-       data-intro="{{#if showAppGuidedTour}}Sandstorm lets you run server apps of many kinds. Start by installing something from the app market.{{/if}}"
+       data-intro="{{#if showAppGuidedTour}}Visit the App Market and install your first App!{{/if}}"
        class="app-button install-button {{#if searching}}hide{{/if}}" href="{{appMarketUrl}}">
       <div class="app-icon pseudoapp install-icon"></div>
       <span class="action-title">Install...</span>
       <span class="action-text">from App Market</span>
     </a>
     <script type="text/javascript">
+      {{#if showAppGuidedTour}}
       function startTour() {
       var tour = introJs()
       tour.setOption('tooltipPosition', 'auto');
@@ -52,10 +53,17 @@
       tour.setOption('showStepNumbers', false);
       tour.setOption('showBullets', false);
       tour.setOption('exitOnOverlayClick', true);
+      tour.setOption('doneLabel', 'Got it');
+      var tourDismiss = function() {
+      Session.set('dismissedAppGuidedTour', true);
+      };
       tour.setOption('disableInteraction', true);
+      tour.onexit(tourDismiss);
+      tour.oncomplete(tourDismiss);
       tour.start()
       }
       startTour();
+      {{/if}}
     </script>
 
     <button class="app-button upload-button {{#if searching}}hide{{/if}}">
