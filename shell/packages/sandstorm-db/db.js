@@ -1428,7 +1428,7 @@ _.extend(SandstormDb.prototype, {
 
   getOrganizationSamlEnabled: function () {
     const membership = this.getOrganizationMembership();
-    return membership && membership.ldap && membership.saml.enabled;
+    return membership && membership.saml && membership.saml.enabled;
   },
 
   getSamlEntryPoint: function () {
